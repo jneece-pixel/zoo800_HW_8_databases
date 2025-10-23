@@ -39,12 +39,21 @@ ggplot(data = inat.data)+
 
 
 ## pie chart of species proportions
-ggplot(data = inat.data, aes(x = "", 
-                             y = scientific_name, 
-                             fill = scientific_name))+
-  geom_col()+
-  coord_polar(theta = "y")+
-  labs(ylab = NA)
+species_counts = bees %>% 
+  count(scientific_name)
+species_counts
+
+ggplot(data = species_counts, aes(x = "", 
+                                  y = n, 
+                                  fill = scientific_name)) +
+  geom_col()+ #creating a barchart with the n column 
+  coord_polar(theta = "y")+ #make it round 
+  labs(title = "piechart of beeeeeees") + #add a title 
+  theme_void() #remove the ugly background 
+## This essentially shows the same information as the histogram, but allows us to
+## compare proportions. The same concerns from the histogram apply here about there
+## being very unequal counts of the different species
+
 
 ## map of observations
 library(maps)
