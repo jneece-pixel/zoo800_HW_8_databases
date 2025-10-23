@@ -13,6 +13,18 @@ inat.data <- get_inat_obs(
 )
 
 
+## histogram of bombus species
+ggplot(data = inat.data)+
+  geom_bar(aes(x = scientific_name))
+
+
+## pie chart of species proportions
+ggplot(data = inat.data, aes(x = "", 
+                             y = scientific_name, 
+                             fill = scientific_name))+
+  geom_col()+
+  coord_polar(theta = "y")+
+  labs()
 
 
 
