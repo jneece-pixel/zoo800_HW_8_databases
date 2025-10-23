@@ -39,7 +39,7 @@ ggplot(data = inat.data)+
 
 
 ## pie chart of species proportions
-species_counts = bees %>% 
+species_counts = inat.data %>% 
   count(scientific_name)
 species_counts
 
@@ -53,7 +53,6 @@ ggplot(data = species_counts, aes(x = "",
 ## This essentially shows the same information as the histogram, but allows us to
 ## compare proportions. The same concerns from the histogram apply here about there
 ## being very unequal counts of the different species
-
 
 ## map of observations
 library(maps)
