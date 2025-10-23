@@ -39,12 +39,31 @@ ggplot(data = inat.data)+
 
 
 ## pie chart of species proportions
+library(dplyr)
+
+species_counts = inat.data %>% 
+  count(scientific_name)
+species_counts
+
 ggplot(data = inat.data, aes(x = "", 
                              y = scientific_name, 
                              fill = scientific_name))+
   geom_col()+
   coord_polar(theta = "y")+
   labs(ylab = NA)
+
+#new piechart 
+pie = ggplot(data = species_counts, aes(x = "", 
+                                        y = n, 
+                                        fill = scientific_name)) +
+  geom_col()+ #creating a barchart with the n column 
+  coord_polar(theta = "y")+ #make it round 
+  labs(title = "piechart of beeeeeees") + #add a title 
+  theme_void() #remove the ugly background 
+pie
+
+
+
 
 ## map of observations
 library(maps)
