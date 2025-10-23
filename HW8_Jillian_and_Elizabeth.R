@@ -8,6 +8,7 @@
 #Loading libraries 
 #------------------------------------
 library(rinat) #install a package meant for extracting iNat data 
+library(tidyverse) #adding ggplot2 via tidyverse 
 
 #Pulling data from iNat 
 #-------------------------------------
@@ -19,7 +20,7 @@ library(rinat) #install a package meant for extracting iNat data
 # d = get_inat_obs_project("city-nature-challenge-2025-northeast-wisconsin", type = "observations", raw = FALSE) #This gets the actual data but you can't tell it to not take everything 
 
 #Let's just get bumble bees from WI in 2025, month 5, max 1000 bees 
-bumblebees_in_wi_2025 = get_inat_obs(
+bees = get_inat_obs(
   query = "Bombus", 
   quality = "research",
   place_id = "wisconsin", 
@@ -27,4 +28,26 @@ bumblebees_in_wi_2025 = get_inat_obs(
   month = 5, 
   maxresults = 500 
 )
+
+# Conducting Exploratory Data Analysis 
+#----------------------------------------------
+
+#First let's see if this is normally distributed 
+
+hist = ggplot(data = bees) + 
+  geom_bar(aes(x = scientific_name)) + 
+  labs(x = "Scientific Name", y = "Count of observations", title = "Histogram of Bees by Species")
+hist
+
+# I guess normal distribution doesn't make sense for species name 
+
+
+
+
+
+
+
+# Code Graveyard 
+
+# hist(bees$scientific_name) #base R is mad
 
