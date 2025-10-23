@@ -1,3 +1,10 @@
+######################################################
+
+# HOMEWORK 8 
+# Jillian Neece and Elizabeth Braatz! 
+
+######################################################
+
 library(rinat)
 library(tidyverse)
 
@@ -15,7 +22,20 @@ inat.data <- get_inat_obs(
 
 ## histogram of bombus species
 ggplot(data = inat.data)+
-  geom_bar(aes(x = scientific_name))
+  geom_bar(aes(x = scientific_name))+
+  theme(axis.text.x = 
+          element_text(angle = 90, vjust = 0.5, hjust = 1))+
+  labs(title = "May 2025 Bumblebee observations in Wisconsin", 
+       caption = "Data from iNaturalist.org")
+  
+
+## There are a few species that are documented in much higher 
+## numbers than most species (i.e. B. bimaculatus, B. impatiens, and B. 
+## griseocollis). These could be the most abundant species, or there could 
+## be other factors that cause them to be more commonly observed (maybe they are 
+## found closer to populated areas where people are more likely to see them, maybe
+## they are larger and more easily recognized, maybe they move slower and are 
+## easier to take photos of). 
 
 
 ## pie chart of species proportions
@@ -24,7 +44,7 @@ ggplot(data = inat.data, aes(x = "",
                              fill = scientific_name))+
   geom_col()+
   coord_polar(theta = "y")+
-  labs()
+  labs(ylab = NA)
 
 
 
