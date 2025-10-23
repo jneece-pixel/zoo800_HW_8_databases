@@ -46,6 +46,19 @@ ggplot(data = inat.data, aes(x = "",
   coord_polar(theta = "y")+
   labs(ylab = NA)
 
+## map of observations
+library(maps)
+WI <- map_data("state", region = "wisconsin")
 
-
+ggplot() +
+  geom_polygon(data = WI, aes(x = long, y = lat, group = group),
+                 fill = "gray95", color = "gray70")+
+  geom_point(data= inat.data, aes(x = longitude, 
+                                  y = latitude, 
+                                  color = scientific_name)) +
+  labs(title = "May 2025 Bombus observations", 
+       caption = "Data from iNaturalist.org")
+## The observations tend to be clustered around Wisconsin cities, particularly 
+## cities with universities (Madison, Milwaukee, Stevens Point), suggesting that
+## there may be some observer bias in the data. 
 
